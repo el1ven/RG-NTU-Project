@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+        "http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+    <constant name="struts.multipart.saveDir" value="/tmp"></constant><!--文件上传路径进行保存-->
+    <package name="myStruts2" namespace="/" extends="json-default">
+        
+        <!--配置自定义登录拦截器-->
+        <!--<interceptors>
+            <interceptor name="loginCheck" class="LoginInterceptor"/>
+            <interceptor-stack name="mystack">
+                <interceptor-ref name="loginCheck" />
+                <interceptor-ref name="defaultStack" />
+            </interceptor-stack>
+        </interceptors>-->
+        <!--配置自定义登录拦截器-->
+
+        <!--<default-interceptor-ref name="mystack"/>-->
+
+        <!--定义全局result-->
+        <global-results>
+            <result name="exception">/exception.jsp</result>
+            <!--<result name="toLogin" type="redirect">/index.jsp</result>-->
+
+            <result name="FM" type="redirect">/jumpToFM1.jsp</result>
+            <result name="SRO" type="redirect">/jumpToSRO.jsp</result>
+            <result name="RSO" type="redirect">/jumpToRSO.jsp</result>
+        </global-results>
+        <!--定义全局result-->
+
+        <!--定义全局exception映射-->
+        <global-exception-mappings>
+            <!-- 捕捉到Exception异常(所有异常)时跳转到exception所命名的视图上 -->
+            <exception-mapping exception="java.lang.Exception" result="exception"/>
+        </global-exception-mappings>
+        <!--定义全局exception映射-->
+
+        <!--school action 选出首页的选择框学院-->
+        <action name="school" class="Action.SchoolAction">
+            <result name="success">index2.jsp</result>
+            <result name="fail">fail.jsp</result>
+        </action>
+        <!--school action-->
+
+
+        <!--用户登录action-->
+        <action name="login" class="Action.LoginAction"><!--登录功能对应的action-->
+            <result name="success">/success.jsp</result>
+            <result name="fail">/verifyLogin.jsp</result>
+            <!--<interceptor-ref name="mystack" />--><!--在每个需要拦截登录的action中加入-->
+        </action>
+        <!--用户登录action-->
+
+        <!--用户注册action-->
+        <action name="register" class="Action.RegisterAction"><!--注册功能对应的action-->
+            <result name="success">/index.jsp</result>
+            <result name="fail">/index.jsp</result>
+        </action>
+        <!--用户注册action-->
+
+        <!--publish action-->
+        <action name="publish" class="Action.PublishAction"><!--research grant发布的action-->
+            <result name="success">/jumpToRSO.jsp</result>
+            <result name="fail">/fail.jsp</result>
+        </action>
+        <!--publish action-->
+
+        <!--publish action 修改之后重新发表-->
+        <action name="publishAfterModify" class="Action.PublishAction" method="publishAfterModify"><!--research grant发布的action-->
+            <result name="success">/jumpToRSO.jsp</result>
+            <result name="fail">/fail.jsp</result>
+        </action>
+        <!--publish action-->
+
+        <!--show action-->
+        <action name="showRSO" class="Action.ShowAction" method="showRSO"><!--research grant显示的action-->
+            <result name="RSO">/RSO.jsp</result>
+            <result name="fail">/fail.jsp</result>
+        </action>
+        <action name="showRSO2" class="Action.ShowAction" method="showRSO2"><!--显示outdate的research grant显示的action-->
+            <result name="RSO">/RSO2.jsp</result>
+            <result name="fail">/fail.jsp</result>
+        </action>
+        <action name="showFM1" class="Action.ShowAction" method="showFM1"><!--research grant显示的action-->
+            <result name="FM1">/FacultyHome1.jsp</result>
+            <result name="fail">/fail.jsp</result>
+        </action>
+        <action name="showFM2" class="Action.ShowAction" method="showFM2"><!--research grant显示的action-->
+            <result name="FM2">/FacultyHome2.jsp</result>
+            <result name="fail">/fail.jsp</result>
+        </action>
+        <action name="showSRO" class="Action.ShowAction" method="showSRO"><!--research grant显示的action-->
+            <result name="SRO">/SRO.jsp</result>
+            <result name="fail">/fail.jsp</result>
+        </action>
+        <action name="showSRO2" class="Action.ShowAction" method="showSRO2"><!--outdate的research grant显示的action-->
+            <result name="SRO">/SRO2.jsp</result>
+            <result name="fail">/fail.jsp</result>
+        </action>
+        <action name="showDetail" class="Action.ShowAction" method="showDetail"><!--research grant显示的action-->
+            <result name="detail">/detail.jsp</result>
+            <result name="fail">/fail.jsp</result>
+        </action>
+        <action name="showDetail2" class="Action.ShowAction" method="showDetail2"><!--research grant显示的action-->
+            <result name="detail">/detail.jsp</result>
+            <result name="fail">/fail.jsp</result>
+        </action>
+        <action name="showModify" class="Action.ShowAction" method="showModify"><!--formModify需要把信息显示出来在进行修改-->
+            <result name="modify">/formModify.jsp</result>
+            <result name="fail">/fail.jsp</result>
+        </action>
+        <action name="showModify2" class="Action.ShowAction" method="showModify2"><!--formModify需要把信息显示出来在进行修改-->
+            <result name="modify">/formModify.jsp</result>
+            <result name="fail">/fail.jsp</result>
+        </action>
+        <action name="showModify3" class="Action.ShowAction" method="showModify3"><!--formModify需要把信息显示出来在进行修改-->
+            <result name="modify">/formModify.jsp</result>
+            <result name="fail">/fail.jsp</result>
+        </action>
+        <!--show action-->
+
+        <!--add action-->
+        <action name="addGrantByFM" class="Action.AddAction" method="addGrantByFM"><!--FM把grant添加到购物车-->
+            <result name="success">/jumpToFM2.jsp</result>
+            <result name="fail">/fail.jsp</result>
+        </action>
+        <!--add action-->
+
+        <!--delete action-->
+        <action name="deleteOfRSO" class="Action.DeleteAction" method="deleteOfRSO"><!--research grant显示的action-->
+            <result name="success">/jumpToRSO.jsp</result>
+            <result name="fail">/fail.jsp</result>
+        </action>
+        <!--delete action-->
+
+        <!--delete action-->
+        <action name="deleteOfFM" class="Action.DeleteAction" method="deleteOfFM"><!--research grant显示的action-->
+            <result name="success">/jumpToFM2.jsp</result>
+            <result name="fail">/fail.jsp</result>
+        </action>
+        <!--delete action-->
+
+        <!--deleteDeadline action-->
+        <action name="deleteDeadline" class="Action.DeleteAction" method="deleteDeadline">
+            <result name="success" type="redirectAction">showModify2?grantId=${grantIdOfStr}</result>
+            <result name="fail">/fail.jsp</result>
+        </action>
+        <!--deleteDeadline action-->
+
+        <!--deleteFile action-->
+        <action name="deleteFile" class="Action.DeleteAction" method="deleteFile">
+            <result name="success" type="redirectAction">showModify3?grantId=${grantIdOfStr}</result>
+            <result name="fail">/fail.jsp</result>
+        </action>
+        <!--deleteFile acton-->
+
+        <!--download action-->
+        <action name="download" class="Action.DownloadAction">
+            <result name="success" type="stream">
+                <param name="contentType">${contentType}</param>
+                <param name="contentDisposition">fileName="${fileName}"</param>
+                <param name="inputName">targetFile</param>
+                <param name="bufferSize">4194304</param>
+            </result>
+        </action>
+        <!--download action-->
+
+       <!--subscribe action-->
+        <action name="subscribe" class="Action.SubscribeAction">
+            <result type="json">
+                <param name="root">result</param>
+            </result>
+        </action>
+        <!--subscribe action-->
+
+        <!--email action-->
+        <action name="email" class="Action.EmailAction">
+            <result name="success">emailSuccess.jsp</result>
+            <result name="fail">emailFail.jsp</result>
+        </action>
+        <!--email action-->
+
+        <!--filter action-->
+        <action name="filter" class="Action.FilterAction">
+            <result name="RSO">RSOAfterFilter.jsp</result>
+            <result name="SRO">SROAfterFilter.jsp</result>
+            <result name="FM">FacultyHome1AfterFilter.jsp</result>
+            <result name="fail">fail.jsp</result>
+        </action>
+        <!--filter action-->
+
+        <!-- add one deadline by SRO-->
+        <action name="addDeadlineBySRO" class="Action.AddDeadlineBySROAction">
+            <result name="success">jumpToSRO.jsp</result>
+            <result name="fail">fail.jsp</result>
+        </action>
+        <!-- add one deadline by SRO-->
+
+        <!-- add markdown by SRO-->
+        <action name="addMark" class="Action.MarkDownAction">
+            <result name="SRO">jumpToSRO2.jsp</result>
+            <result name="RSO">jumpToRSO2.jsp</result>
+        </action>
+        <!-- add markdown by SRO-->
+
+        <!-- fullText search-->
+        <!--<action name="getPageCountForFullText" class="Action.FullTextAction" method="getTotalPageCount">
+            <result type="json">
+                <param name="root">resultOfTotalCount</param>
+            </result>
+        </action>-->
+        <action name="fullText" class="Action.FullTextAction">
+            <result type="json">
+                <param name="root">result</param>
+            </result>
+        </action>
+        <!-- fullText search-->
+
+        <!--search中涉及的ajax的action-->
+        <action name="ajaxDelete" class="Action.AjaxDeleteAction">
+            <result type="json">
+                <param name="root">result</param>
+            </result>
+        </action>
+        <action name="ajaxMark" class="Action.AjaxMarkAction">
+            <result type="json">
+                <param name="root">result</param>
+            </result>
+        </action>
+        <action name="ajaxDeadlineBySRO" class="Action.AjaxDeadlineBySROAction">
+            <result type="json">
+                <param name="root">result</param>
+            </result>
+        </action>
+        <action name="ajaxSubscribeDataBySRO" class="Action.AjaxSubscribeBySROAction">
+            <result type="json">
+                <param name="root">result</param>
+            </result>
+        </action>
+        <action name="ajaxDeadlineByFM" class="Action.AjaxDeadlineByFMAction">
+            <result type="json">
+                <param name="root">result</param>
+            </result>
+        </action>
+        <action name="ajaxChart" class="Action.AjaxChartAction">
+            <result type="json">
+                <param name="root">result</param>
+            </result>
+        </action>
+        <!--search中涉及的ajax的action-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </package>
+</struts>

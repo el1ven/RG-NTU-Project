@@ -1,0 +1,25 @@
+<thead>
+                    <tr>
+                      <th><input type="checkbox" onclick="checkAll(this.checked)"></th>
+                      <th>
+                         <span class="glyphicon glyphicon-edit"></span>
+                      </th>
+                      <th onClick="mySortInt(2,-1)">
+                      <a href="javascript:;" style="text-decoration:none; color:#000;">Id<span class="dropup"><b class="caret"></b></span></a>
+                      </th>
+                      <th onClick="mySortString(3)">
+                      <a href="javascript:;" style="text-decoration:none; color:#000;">Series<span class="dropup"><b class="caret"></b></span></a>
+                      </th>
+                      <th onClick="mySortString(4)">
+                      <a href="javascript:;" style="text-decoration:none; color:#000;">Title<span class="dropup"><b class="caret"></b></span></a>
+                      </th>
+                      <th>
+                      <span class="dropup"><a href="javascript:;" style="color:#000;"><div class="glyphicon glyphicon-user"><b class="caret"></b></div></a></span>
+                      </th>
+                      <th onClick="mySortInt(6,6">
+                      <span class="dropup"><a href="javascript:;" style="color:#000;"><div class="glyphicon glyphicon-calendar" style="margin-left:25px;"><b class="caret"></b></div></a></span>
+                      </th>
+
+
+                    </tr>
+                </thead>
